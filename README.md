@@ -17,7 +17,7 @@ This project follows a "Separation of Concerns" modular design:
 4. Visualization: The computed path is mapped as an interactive Polyline.
 
 How to run it:
-1. Install requirements: `pip install osmnx streamlit folium`
+1. Install requirements: ``pip install -r requirements.txt`
 2. Download data: `python app/server.py`
 3. Compile the C++ engine: 
    `g++ src/main.cpp src/graph.cpp src/Trie.cpp -o src/navigator.exe`
