@@ -1,0 +1,13 @@
+__pycache__/
+.vscode/
+
+src/*.exe
+src/*.o
+
+src/statii.txt
+src/coordonate.txt
+src/nume_strazi.txt
+src/traseu.txt
+harta_ruta.html
+
+*.log
