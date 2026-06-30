@@ -14,3 +14,4 @@ harta_ruta.html
 *.log
 
 *.exe
+build/
