@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <string>
 
 struct Node {
@@ -10,10 +10,10 @@ struct Node {
 
 class Graph {
 private:
-    std::map<std::string, std::vector<Node>> NodeList;
+    std::unordered_map<std::string, std::vector<Node>> NodeList;
 public:
-    void AddNode(std::string u, std::string v, double w);
-    void loadFromFile(std::string filename);
-    void Dijkstra(std::string start, std::string end);
+    void AddNode(std::string& u, std::string& v, double w);
+    void loadFromFile(std::string& filename);
+    void Dijkstra(std::string& start, std::string& end);
     void printGraph();
 };

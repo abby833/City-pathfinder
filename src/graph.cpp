@@ -7,12 +7,12 @@
 
 using namespace std;
 
-void Graph::AddNode(string u, string v, double w) {
+void Graph::AddNode(string& u, string& v, double w) {
     NodeList[u].push_back({v, w});
     NodeList[v].push_back({u, w});
 }
 
-void Graph::loadFromFile(string filename) {
+void Graph::loadFromFile(string& filename) {
     ifstream file(filename);
     string line, u, v, w_str;
     while (getline(file, line)) {
@@ -35,9 +35,9 @@ void Graph::printGraph() {
     }
 }
 
-void Graph::Dijkstra(string start, string end) {
-    map<string, double> distance;
-    map<string, string> parent; 
+void Graph::Dijkstra(string& start, string& end) {
+    unordered_map<string, double> distance;
+    unordered_map<string, string> parent; 
     
     for(auto const& [node, edges] : NodeList) {
         distance[node] = INT_MAX;
