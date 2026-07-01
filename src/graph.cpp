@@ -4,6 +4,7 @@
 #include <sstream>
 #include <queue>
 #include <climits>
+#include <algorithm>
 
 using namespace std;
 
