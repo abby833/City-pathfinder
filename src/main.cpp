@@ -3,8 +3,8 @@
 #include <sstream>
 #include <string>
 #include <vector> 
-#include "Trie.h"
-#include "Graph.h" 
+#include "trie.h"
+#include "graph.h" 
 
 void loadStreetsIntoTrie(Trie& trie) {
     std::ifstream file("src/nume_strazi.txt");
