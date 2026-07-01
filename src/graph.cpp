@@ -12,7 +12,7 @@ void Graph::AddNode(string& u, string& v, double w) {
     NodeList[v].push_back({u, w});
 }
 
-void Graph::loadFromFile(string& filename) {
+void Graph::loadFromFile(const string& filename) {
     ifstream file(filename);
     string line, u, v, w_str;
     while (getline(file, line)) {
@@ -35,7 +35,7 @@ void Graph::printGraph() {
     }
 }
 
-void Graph::Dijkstra(string& start, string& end) {
+std::vector<std::string> Graph::Dijkstra(const std::string& start, const std::string& end) {
     unordered_map<string, double> distance;
     unordered_map<string, string> parent; 
     
@@ -72,23 +72,24 @@ void Graph::Dijkstra(string& start, string& end) {
         }
     }
 
-    if(distance[end] == INT_MAX) {
-        cout << "Nu exista drum intre " << start << " si " << end << endl;
-    } else {
+    if(distance[end] == INT_MAX) 
+            return {};
+     else 
+    {
         ///Reconstruiesc drumul pentru a-l pune intr-un fisier
         vector<string> path;
         for(string at = end; at != ""; at = parent[at]) {
             path.push_back(at);
+            if (at == start) break;
         }
-        
-        // Deschid fisierul pt a salva rezultatul in python
-        ofstream outFile("src/traseu.txt");
-        //scriu drumul invers
-        for(int i = path.size() - 1; i >= 0; i--) {
-            outFile << path[i] << endl;
-        }
-        outFile.close();
-        
-        cout << "Distanta: " << distance[end] << ". Traseul a fost salvat in 'src/traseu.txt'." << endl;
+        std::reverse(path.begin(), path.end());
+       
+        return path;
     }
+}
+
+void Graph::savePathToFile(const std::vector<std::string>& path, const std::string& filename) {
+    std::ofstream outFile(filename);
+    for (const auto& node : path) outFile << node << "\n";
+    outFile.close();
 }
