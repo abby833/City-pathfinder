@@ -1,0 +1,30 @@
+name: C++ Unit Tests (Catch2)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Create Build Directory
+      run: cmake -E make_directory ${{github.workspace}}/build
+
+    - name: Configure CMake
+      working-directory: ${{github.workspace}}/build
+      run: cmake ..
+
+    - name: Build Project
+      working-directory: ${{github.workspace}}/build
+      run: cmake --build .
+
+    - name: Run Unit Tests
+      working-directory: ${{github.workspace}}/build
+      run: ./run_tests
